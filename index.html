@@ -1,83 +1,119 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Amigo Photos — фотопортфолио фотографа</title>
-    <meta name="description" content="Фотопортфолио фотографа. Стрит-фотография и пейзажи. Amigo Photos.">
+<meta charset="UTF-8">
+<title>Amigo Photos — фотопортфолио</title>
+<meta name="description" content="Фотопортфолио фотографа. Стрит-фотография и пейзажи.">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y2D4VS5FRD"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-Y2D4VS5FRD');
-    </script>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y2D4VS5FRD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Y2D4VS5FRD');
+</script>
 
-    <style>
-        body {
-            margin: 0;
-            background: #000;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
+<style>
+body {
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+h1 { margin: 40px 0 10px; }
+p { color: #aaa; }
 
-        h1 {
-            margin: 40px 0 10px;
-        }
+/* Галерея */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    padding: 30px;
+}
+.gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    object-fit: cover;
+    opacity: 0;
+    animation: fadeIn 0.8s forwards;
+}
+.gallery img:hover { transform: scale(1.05); }
 
-        p {
-            color: #aaa;
-        }
+@keyframes fadeIn { to { opacity: 1; } }
 
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            padding: 40px;
-        }
-
-        .gallery img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery img:hover {
-            transform: scale(1.03);
-        }
-    </style>
+/* Lightbox */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+}
+.lightbox:target { display: flex; }
+</style>
 </head>
 
 <body>
 
-    <h1>Amigo Photos</h1>
-    <p>Я начинающий фотограф.</p>
-    <p>Это моё фотопортфолио. Я снимаю стрит-фотографию и пейзажи.</p>
-    <p>Фотография для меня — способ сохранить атмосферу и моменты.</p>
+<h1>Amigo Photos</h1>
+<p>Я начинающий фотограф.</p>
+<p>Это моё фотопортфолио. Я снимаю стрит-фотографию и пейзажи.</p>
+<p>Фотография для меня — способ сохранить атмосферу и моменты.</p>
 
-    <!-- Галерея -->
-    <div class="gallery">
-        <img src="images/IMG_20251215_213352.jpg" alt="Фото 1">
-        <img src="images/IMG_20251215_025420.jpg" alt="Фото 2">
-        <img src="images/1765805477033.jpg" alt="Фото 3">
-        <img src="images/1000001899.jpg" alt="Фото 4">
-        <img src="images/1000081329.jpg" alt="Фото 5">
-        <img src="images/1000083347.jpg" alt="Фото 6">
-        <img src="images/1000083349.jpg" alt="Фото 7">
-        <img src="images/1000083355.jpg" alt="Фото 8">
-        <img src="images/1000083556.jpg" alt="Фото 9">
-        <img src="images/1765805157461.jpg" alt="Фото 10">
-        <img src="images/GridArt_20250825_140215944.jpg" alt="Фото 11">
-        <img src="images/IMG_2428.jpg" alt="Фото 12">
-        <img src="images/IMG_2460.jpg" alt="Фото 13">
-        <img src="images/IMG_2474.jpg" alt="Фото 14">
-        <img src="images/IMG_2519.jpg" alt="Фото 15">
-        <img src="images/IMG_20250811_120147.jpg" alt="Фото 16">
-        <img src="images/IMG_20251003_184027.jpg" alt="Фото 17">
-    </div>
+<!-- Галерея -->
+<div class="gallery">
+    <a href="#img1"><img src="images/IMG_20251215_213352.jpg" alt="Фото 1" loading="lazy"></a>
+    <a href="#img2"><img src="images/IMG_20251215_025420.jpg" alt="Фото 2" loading="lazy"></a>
+    <a href="#img3"><img src="images/1765805477033.jpg" alt="Фото 3" loading="lazy"></a>
+    <a href="#img4"><img src="images/1000001899.jpg" alt="Фото 4" loading="lazy"></a>
+    <a href="#img5"><img src="images/1000081329.jpg" alt="Фото 5" loading="lazy"></a>
+    <a href="#img6"><img src="images/1000083347.jpg" alt="Фото 6" loading="lazy"></a>
+    <a href="#img7"><img src="images/1000083349.jpg" alt="Фото 7" loading="lazy"></a>
+    <a href="#img8"><img src="images/1000083355.jpg" alt="Фото 8" loading="lazy"></a>
+    <a href="#img9"><img src="images/1000083556.jpg" alt="Фото 9" loading="lazy"></a>
+    <a href="#img10"><img src="images/1765805157461.jpg" alt="Фото 10" loading="lazy"></a>
+    <a href="#img11"><img src="images/GridArt_20250825_140215944.jpg" alt="Фото 11" loading="lazy"></a>
+    <a href="#img12"><img src="images/IMG_2428.jpg" alt="Фото 12" loading="lazy"></a>
+    <a href="#img13"><img src="images/IMG_2460.jpg" alt="Фото 13" loading="lazy"></a>
+    <a href="#img14"><img src="images/IMG_2474.jpg" alt="Фото 14" loading="lazy"></a>
+    <a href="#img15"><img src="images/IMG_2519.jpg" alt="Фото 15" loading="lazy"></a>
+    <a href="#img16"><img src="images/IMG_20250811_120147.jpg" alt="Фото 16" loading="lazy"></a>
+    <a href="#img17"><img src="images/IMG_20251003_184027.jpg" alt="Фото 17" loading="lazy"></a>
+</div>
+
+<!-- Lightbox -->
+<div id="img1" class="lightbox"><a href="#"><img src="images/IMG_20251215_213352.jpg" alt="Фото 1"></a></div>
+<div id="img2" class="lightbox"><a href="#"><img src="images/IMG_20251215_025420.jpg" alt="Фото 2"></a></div>
+<div id="img3" class="lightbox"><a href="#"><img src="images/1765805477033.jpg" alt="Фото 3"></a></div>
+<div id="img4" class="lightbox"><a href="#"><img src="images/1000001899.jpg" alt="Фото 4"></a></div>
+<div id="img5" class="lightbox"><a href="#"><img src="images/1000081329.jpg" alt="Фото 5"></a></div>
+<div id="img6" class="lightbox"><a href="#"><img src="images/1000083347.jpg" alt="Фото 6"></a></div>
+<div id="img7" class="lightbox"><a href="#"><img src="images/1000083349.jpg" alt="Фото 7"></a></div>
+<div id="img8" class="lightbox"><a href="#"><img src="images/1000083355.jpg" alt="Фото 8"></a></div>
+<div id="img9" class="lightbox"><a href="#"><img src="images/1000083556.jpg" alt="Фото 9"></a></div>
+<div id="img10" class="lightbox"><a href="#"><img src="images/1765805157461.jpg" alt="Фото 10"></a></div>
+<div id="img11" class="lightbox"><a href="#"><img src="images/GridArt_20250825_140215944.jpg" alt="Фото 11"></a></div>
+<div id="img12" class="lightbox"><a href="#"><img src="images/IMG_2428.jpg" alt="Фото 12"></a></div>
+<div id="img13" class="lightbox"><a href="#"><img src="images/IMG_2460.jpg" alt="Фото 13"></a></div>
+<div id="img14" class="lightbox"><a href="#"><img src="images/IMG_2474.jpg" alt="Фото 14"></a></div>
+<div id="img15" class="lightbox"><a href="#"><img src="images/IMG_2519.jpg" alt="Фото 15"></a></div>
+<div id="img16" class="lightbox"><a href="#"><img src="images/IMG_20250811_120147.jpg" alt="Фото 16"></a></div>
+<div id="img17" class="lightbox"><a href="#"><img src="images/IMG_20251003_184027.jpg" alt="Фото 17"></a></div>
 
 </body>
 </html>

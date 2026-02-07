@@ -59,12 +59,6 @@ p { color: #aaa; }
     max-height: 90%;
     border-radius: 10px;
 }
-#lightbox:target {
-    display: flex;
-}
-#lightbox.show {
-    display: flex;
-}
 </style>
 </head>
 
@@ -75,48 +69,46 @@ p { color: #aaa; }
 <p>Это моё фотопортфолио. Я снимаю стрит-фотографию и пейзажи.</p>
 <p>Фотография для меня — способ сохранить атмосферу и моменты.</p>
 
+<!-- Галерея -->
 <div class="gallery">
-    <img src="images/IMG_20251215_213352.jpg" alt="Фото 1">
-    <img src="images/IMG_20251215_025420.jpg" alt="Фото 2">
-    <img src="images/1765805477033.jpg" alt="Фото 3">
-    <img src="images/1000001899.jpg" alt="Фото 4">
-    <img src="images/1000081329.jpg" alt="Фото 5">
-    <img src="images/1000083347.jpg" alt="Фото 6">
-    <img src="images/1000083349.jpg" alt="Фото 7">
-    <img src="images/1000083355.jpg" alt="Фото 8">
-    <img src="images/1000083556.jpg" alt="Фото 9">
-    <img src="images/1765805157461.jpg" alt="Фото 10">
-    <img src="images/GridArt_20250825_140215944.jpg" alt="Фото 11">
-    <img src="images/IMG_2428.jpg" alt="Фото 12">
-    <img src="images/IMG_2460.jpg" alt="Фото 13">
-    <img src="images/IMG_2474.jpg" alt="Фото 14">
-    <img src="images/IMG_2519.jpg" alt="Фото 15">
-    <img src="images/IMG_20250811_120147.jpg" alt="Фото 16">
-    <img src="images/IMG_20251003_184027.jpg" alt="Фото 17">
+    <img src="images/IMG_20251215_213352.jpg" alt="Фото 1" loading="lazy">
+    <img src="images/IMG_20251215_025420.jpg" alt="Фото 2" loading="lazy">
+    <img src="images/1765805477033.jpg" alt="Фото 3" loading="lazy">
+    <img src="images/1000001899.jpg" alt="Фото 4" loading="lazy">
+    <img src="images/1000081329.jpg" alt="Фото 5" loading="lazy">
+    <img src="images/1000083347.jpg" alt="Фото 6" loading="lazy">
+    <img src="images/1000083349.jpg" alt="Фото 7" loading="lazy">
+    <img src="images/1000083355.jpg" alt="Фото 8" loading="lazy">
+    <img src="images/1000083556.jpg" alt="Фото 9" loading="lazy">
+    <img src="images/1765805157461.jpg" alt="Фото 10" loading="lazy">
+    <img src="images/GridArt_20250825_140215944.jpg" alt="Фото 11" loading="lazy">
+    <img src="images/IMG_2428.jpg" alt="Фото 12" loading="lazy">
+    <img src="images/IMG_2460.jpg" alt="Фото 13" loading="lazy">
+    <img src="images/IMG_2474.jpg" alt="Фото 14" loading="lazy">
+    <img src="images/IMG_2519.jpg" alt="Фото 15" loading="lazy">
+    <img src="images/IMG_20250811_120147.jpg" alt="Фото 16" loading="lazy">
+    <img src="images/IMG_20251003_184027.jpg" alt="Фото 17" loading="lazy">
 </div>
 
-<!-- Lightbox контейнер -->
+<!-- Lightbox -->
 <div id="lightbox">
     <img src="" alt="Увеличенное фото">
 </div>
 
 <script>
-// Получаем все фото
 const galleryImages = document.querySelectorAll('.gallery img');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = lightbox.querySelector('img');
 
-// При клике на фото — показываем в лайтбоксе
 galleryImages.forEach(img => {
     img.addEventListener('click', () => {
         lightboxImg.src = img.src;
-        lightbox.classList.add('show');
+        lightbox.style.display = 'flex';
     });
 });
 
-// Клик по лайтбоксу — закрыть
 lightbox.addEventListener('click', () => {
-    lightbox.classList.remove('show');
+    lightbox.style.display = 'none';
 });
 </script>
 

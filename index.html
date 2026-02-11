@@ -6,7 +6,7 @@
 <title>Amigo Photos — фотопортфолио</title>
 <meta name="description" content="Фотопортфолио фотографа. Стрит-фотография и пейзажи.">
 
-<!-- Open Graph -->
+<!-- Open Graph для соцсетей -->
 <meta property="og:title" content="Amigo Photos — фотопортфолио">
 <meta property="og:description" content="Я снимаю стрит-фотографию и пейзажи. Фотография для меня — способ сохранить моменты.">
 <meta property="og:type" content="website">
@@ -36,35 +36,35 @@ body {
 }
 header {
     text-align: center;
-    padding: 40px 15px 15px;
+    padding: 50px 20px 20px;
 }
 h1 {
-    font-size: 2em;
+    font-size: 3em;
     margin: 0 0 10px;
 }
 p {
     color: #aaa;
-    font-size: 0.95em;
+    font-size: 1.1em;
 }
 
 /* Галерея-мозаика */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Всегда 2 колонки */
-    gap: 6px; /* минимальный отступ */
-    padding: 10px; /* минимальный паддинг */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 30px;
 }
 .gallery img {
     width: 100%;
-    height: 160px;
+    height: 200px;
     object-fit: cover;
-    border-radius: 6px;
+    border-radius: 12px;
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 .gallery img:hover {
-    transform: scale(1.03);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.7);
 }
 
 /* Lightbox */
@@ -79,34 +79,37 @@ p {
     z-index: 1000;
 }
 #lightbox img {
-    max-width: 95%;
-    max-height: 95%;
+    max-width: 90%;
+    max-height: 90%;
     border-radius: 10px;
+    box-shadow: 0 0 25px rgba(255,255,255,0.3);
+}
+#lightbox:active {
+    display: none;
 }
 
 /* Анимация появления галереи */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 .gallery img {
-    animation: fadeIn 0.4s ease forwards;
+    animation: fadeIn 0.5s ease forwards;
 }
 
 /* Кнопка Наверх */
 #toTop {
     position: fixed;
-    bottom: 12px;
-    right: 12px;
+    bottom: 20px;
+    right: 20px;
     background: #fff;
     color: #111;
     border: none;
-    padding: 6px 10px;
+    padding: 10px 14px;
     border-radius: 50px;
     cursor: pointer;
     font-weight: bold;
-    font-size: 0.9em;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     display: none;
     z-index: 1000;
 }
@@ -114,22 +117,50 @@ p {
     background: #f0f0f0;
 }
 
-/* Адаптация для телефонов (супер-компактно) */
-@media (max-width: 480px) {
+/* Адаптация под планшеты и телефоны */
+@media (max-width: 900px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr); /* 2 колонки на планшетах */
+        gap: 12px;
+        padding: 20px;
+    }
     .gallery img {
-        height: 140px;
-        border-radius: 4px;
+        height: 180px;
+        border-radius: 10px;
+    }
+    header {
+        padding: 40px 15px 15px;
+    }
+    h1 {
+        font-size: 2.5em;
+    }
+    p {
+        font-size: 1em;
+    }
+}
+@media (max-width: 600px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr); /* 2 колонки на телефонах */
+        gap: 10px;
+        padding: 15px;
+    }
+    .gallery img {
+        height: 150px;
+        border-radius: 8px;
     }
     header {
         padding: 30px 10px 10px;
     }
-    h1 { font-size: 1.8em; }
-    p { font-size: 0.9em; }
+    h1 {
+        font-size: 2em;
+    }
+    p {
+        font-size: 0.95em;
+    }
     #toTop {
-        padding: 5px 8px;
-        font-size: 0.8em;
-        bottom: 10px;
-        right: 10px;
+        padding: 8px 12px;
+        bottom: 15px;
+        right: 15px;
     }
 }
 </style>
@@ -171,7 +202,7 @@ p {
 </div>
 
 <!-- Кнопка Наверх -->
-<button id="toTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">↑</button>
+<button id="toTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">↑ Наверх</button>
 
 <script>
 const galleryImages = document.querySelectorAll('.gallery img');
@@ -192,7 +223,11 @@ lightbox.addEventListener('click', () => {
 // Появление кнопки Наверх
 const toTop = document.getElementById('toTop');
 window.addEventListener('scroll', () => {
-    toTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+    if (window.scrollY > 300) {
+        toTop.style.display = 'block';
+    } else {
+        toTop.style.display = 'none';
+    }
 });
 </script>
 

@@ -11,7 +11,7 @@
 <meta property="og:description" content="Я снимаю стрит-фотографию и пейзажи. Фотография для меня — способ сохранить моменты.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://amigo007512.github.io/amigophotos.portfolio/">
-<meta property="og:image" content="images/1.jpg">
+<meta property="og:image" content="https://via.placeholder.com/300x200.png?text=Фото+1">
 
 <!-- Favicon -->
 <link rel="icon" href="images/favicon.ico" type="image/x-icon">
@@ -30,41 +30,42 @@
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background: #111;
-    color: #fff;
+    background: #1a1a1a; /* мягкий темный фон */
+    color: #eee;
     scroll-behavior: smooth;
 }
 header {
     text-align: center;
-    padding: 40px 15px 15px;
+    padding: 50px 20px 20px;
 }
 h1 {
-    font-size: 2em;
+    font-size: 2.5em;
     margin: 0 0 10px;
 }
 p {
-    color: #aaa;
-    font-size: 0.95em;
+    color: #ccc;
+    font-size: 1em;
+    line-height: 1.4em;
 }
 
-/* Галерея-мозаика */
+/* Галерея */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Всегда 2 колонки */
-    gap: 6px; /* минимальный отступ */
-    padding: 10px; /* минимальный паддинг */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    padding: 20px;
 }
 .gallery img {
     width: 100%;
-    height: 160px;
+    height: 180px;
     object-fit: cover;
-    border-radius: 6px;
+    border-radius: 10px;
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 .gallery img:hover {
-    transform: scale(1.03);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
 
 /* Lightbox */
@@ -72,15 +73,15 @@ p {
     position: fixed;
     top:0; left:0;
     width:100%; height:100%;
-    background: rgba(0,0,0,0.95);
+    background: rgba(0,0,0,0.85);
     display: none;
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
 #lightbox img {
-    max-width: 95%;
-    max-height: 95%;
+    max-width: 90%;
+    max-height: 90%;
     border-radius: 10px;
 }
 
@@ -96,41 +97,43 @@ p {
 /* Кнопка Наверх */
 #toTop {
     position: fixed;
-    bottom: 12px;
-    right: 12px;
-    background: #fff;
+    bottom: 15px;
+    right: 15px;
+    background: #eee;
     color: #111;
     border: none;
-    padding: 6px 10px;
+    padding: 8px 12px;
     border-radius: 50px;
     cursor: pointer;
     font-weight: bold;
-    font-size: 0.9em;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 3px 12px rgba(0,0,0,0.3);
     display: none;
     z-index: 1000;
 }
 #toTop:hover {
-    background: #f0f0f0;
+    background: #fff;
 }
 
-/* Адаптация для телефонов (супер-компактно) */
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .gallery img { height: 160px; }
+    h1 { font-size: 2.2em; }
+}
+@media (max-width: 768px) {
+    .gallery img { height: 150px; }
+    h1 { font-size: 2em; }
+}
 @media (max-width: 480px) {
-    .gallery img {
-        height: 140px;
-        border-radius: 4px;
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        padding: 10px;
     }
-    header {
-        padding: 30px 10px 10px;
-    }
+    .gallery img { height: 140px; border-radius: 6px; }
+    header { padding: 30px 10px 10px; }
     h1 { font-size: 1.8em; }
-    p { font-size: 0.9em; }
-    #toTop {
-        padding: 5px 8px;
-        font-size: 0.8em;
-        bottom: 10px;
-        right: 10px;
-    }
+    p { font-size: 0.9em; color: #ddd; }
+    #toTop { padding: 6px 10px; font-size: 0.8em; bottom: 10px; right: 10px; }
 }
 </style>
 </head>
@@ -144,25 +147,16 @@ p {
 </header>
 
 <div class="gallery">
-    <img src="images/1.jpg" alt="Фото 1" loading="lazy">
-    <img src="images/2.jpg" alt="Фото 2" loading="lazy">
-    <img src="images/3.jpg" alt="Фото 3" loading="lazy">
-    <img src="images/4.jpg" alt="Фото 4" loading="lazy">
-    <img src="images/5.jpg" alt="Фото 5" loading="lazy">
-    <img src="images/6.jpg" alt="Фото 6" loading="lazy">
-    <img src="images/7.jpg" alt="Фото 7" loading="lazy">
-    <img src="images/8.jpg" alt="Фото 8" loading="lazy">
-    <img src="images/9.jpg" alt="Фото 9" loading="lazy">
-    <img src="images/10.jpg" alt="Фото 10" loading="lazy">
-    <img src="images/11.jpg" alt="Фото 11" loading="lazy">
-    <img src="images/12.jpg" alt="Фото 12" loading="lazy">
-    <img src="images/13.jpg" alt="Фото 13" loading="lazy">
-    <img src="images/14.jpg" alt="Фото 14" loading="lazy">
-    <img src="images/15.jpg" alt="Фото 15" loading="lazy">
-    <img src="images/16.jpg" alt="Фото 16" loading="lazy">
-    <img src="images/17.jpg" alt="Фото 17" loading="lazy">
-    <img src="images/18.jpg" alt="Фото 18" loading="lazy">
-    <img src="images/19.jpg" alt="Фото 19" loading="lazy">
+    <!-- Временные placeholder картинки, можно заменить на свои -->
+    <img src="https://via.placeholder.com/300x200.png?text=Фото+1" alt="Фото 1">
+    <img src="https://via.placeholder.com/300x200.png?text=Фото+2" alt="Фото 2">
+    <img src="https://via.placeholder.com/300x200.png?text=Фото+3" alt="Фото 3">
+    <img src="https://via.placeholder.com/300x200.png?text=Фото+4" alt="Фото 4">
+    <img src="https://via.placeholder.com/300x200.png?text=Фото+5" alt="Фото 5">
+    <img src="https://via.placeholder.com/300x200.png?text=Фото+6" alt="Фото 6">
+    <img src="https://via.placeholder.com/300x200.png?text=Фото+7" alt="Фото 7">
+    <img src="https://via.placeholder.com/300x200.png?text=Фото+8" alt="Фото 8">
+    <img src="https://via.placeholder.com/300x200.png?text=Фото+9" alt="Фото 9">
 </div>
 
 <!-- Lightbox -->

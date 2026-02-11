@@ -4,8 +4,9 @@
 <meta charset="UTF-8">
 <title>Amigo Photos — фотопортфолио</title>
 <meta name="description" content="Фотопортфолио фотографа. Стрит-фотография и пейзажи.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Google Analytics (по желанию можно оставить) -->
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y2D4VS5FRD"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -15,22 +16,85 @@
 </script>
 
 <style>
-body { margin: 0; background: #000; color: #fff; font-family: Arial, sans-serif; text-align: center; }
-h1 { margin: 40px 0 10px; }
-p { color: #aaa; }
-.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; padding: 30px; }
-.gallery img { width: 100%; height: auto; border-radius: 8px; cursor: pointer; transition: transform 0.2s ease; object-fit: cover; }
-#lightbox { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index:1000; }
-#lightbox img { max-width: 90%; max-height: 90%; border-radius: 10px; }
+/* Основной стиль */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: #111;
+    color: #fff;
+}
+header {
+    text-align: center;
+    padding: 50px 20px 20px;
+}
+h1 {
+    font-size: 3em;
+    margin: 0 0 10px;
+}
+p {
+    color: #aaa;
+    font-size: 1.1em;
+}
+
+/* Галерея-мозаика */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 30px;
+}
+.gallery img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+}
+
+/* Lightbox */
+#lightbox {
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+#lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    box-shadow: 0 0 25px rgba(255,255,255,0.3);
+}
+#lightbox:active {
+    display: none;
+}
+
+/* Анимация появления галереи */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.gallery img {
+    animation: fadeIn 0.5s ease forwards;
+}
 </style>
 </head>
 
 <body>
 
-<h1>Amigo Photos</h1>
-<p>Я начинающий фотограф.</p>
-<p>Это моё фотопортфолио. Я снимаю стрит-фотографию и пейзажи.</p>
-<p>Фотография для меня — способ сохранить атмосферу и моменты.</p>
+<header>
+    <h1>Amigo Photos</h1>
+    <p>Я начинающий фотограф. Стрит-фотография и пейзажи.</p>
+    <p>Фотография для меня — способ сохранить атмосферу и моменты.</p>
+</header>
 
 <div class="gallery">
     <img src="images/1.jpg" alt="Фото 1" loading="lazy">
@@ -54,6 +118,7 @@ p { color: #aaa; }
     <img src="images/19.jpg" alt="Фото 19" loading="lazy">
 </div>
 
+<!-- Lightbox -->
 <div id="lightbox">
     <img src="" alt="Увеличенное фото">
 </div>

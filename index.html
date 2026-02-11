@@ -1,5 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amigo Photos — фотопортфолио</title>
+<meta name="description" content="Фотопортфолио фотографа. Стрит-фотография и пейзажи.">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Amigo Photos — фотопортфолио">
+<meta property="og:description" content="Я снимаю стрит-фотографию и пейзажи. Фотография для меня — способ сохранить моменты.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://amigo007512.github.io/amigophotos.portfolio/">
+<meta property="og:image" content="images/1.jpg">
+
+<!-- Favicon -->
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y2D4VS5FRD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Y2D4VS5FRD');
+</script>
+
 <style>
-/* Общий стиль — остаётся прежним */
+/* Основной стиль */
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
@@ -9,35 +36,35 @@ body {
 }
 header {
     text-align: center;
-    padding: 50px 20px 20px;
+    padding: 40px 15px 15px;
 }
 h1 {
-    font-size: 3em;
+    font-size: 2em;
     margin: 0 0 10px;
 }
 p {
     color: #aaa;
-    font-size: 1.1em;
+    font-size: 0.95em;
 }
 
 /* Галерея-мозаика */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 10px;
-    padding: 20px;
+    grid-template-columns: repeat(2, 1fr); /* Всегда 2 колонки */
+    gap: 6px; /* минимальный отступ */
+    padding: 10px; /* минимальный паддинг */
 }
 .gallery img {
     width: 100%;
-    height: 150px;
+    height: 160px;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 6px;
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 .gallery img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+    transform: scale(1.03);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.6);
 }
 
 /* Lightbox */
@@ -52,37 +79,34 @@ p {
     z-index: 1000;
 }
 #lightbox img {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 95%;
+    max-height: 95%;
     border-radius: 10px;
-    box-shadow: 0 0 25px rgba(255,255,255,0.3);
-}
-#lightbox:active {
-    display: none;
 }
 
 /* Анимация появления галереи */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 .gallery img {
-    animation: fadeIn 0.5s ease forwards;
+    animation: fadeIn 0.4s ease forwards;
 }
 
 /* Кнопка Наверх */
 #toTop {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 12px;
+    right: 12px;
     background: #fff;
     color: #111;
     border: none;
-    padding: 10px 14px;
+    padding: 6px 10px;
     border-radius: 50px;
     cursor: pointer;
     font-weight: bold;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    font-size: 0.9em;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
     display: none;
     z-index: 1000;
 }
@@ -90,31 +114,88 @@ p {
     background: #f0f0f0;
 }
 
-/* Адаптация под мобильные устройства */
-@media (max-width: 600px) {
-    header {
-        padding: 30px 15px 15px;
-    }
-    h1 {
-        font-size: 2em;
-    }
-    p {
-        font-size: 1em;
-    }
-    .gallery {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: 8px;
-        padding: 15px;
-    }
+/* Адаптация для телефонов (супер-компактно) */
+@media (max-width: 480px) {
     .gallery img {
-        height: 120px;
-        border-radius: 8px;
+        height: 140px;
+        border-radius: 4px;
     }
+    header {
+        padding: 30px 10px 10px;
+    }
+    h1 { font-size: 1.8em; }
+    p { font-size: 0.9em; }
     #toTop {
-        padding: 8px 12px;
-        bottom: 15px;
-        right: 15px;
+        padding: 5px 8px;
+        font-size: 0.8em;
+        bottom: 10px;
+        right: 10px;
     }
 }
 </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Amigo Photos</h1>
+    <p>Я начинающий фотограф. Стрит-фотография и пейзажи.</p>
+    <p>Фотография для меня — способ сохранить атмосферу и моменты.</p>
+</header>
+
+<div class="gallery">
+    <img src="images/1.jpg" alt="Фото 1" loading="lazy">
+    <img src="images/2.jpg" alt="Фото 2" loading="lazy">
+    <img src="images/3.jpg" alt="Фото 3" loading="lazy">
+    <img src="images/4.jpg" alt="Фото 4" loading="lazy">
+    <img src="images/5.jpg" alt="Фото 5" loading="lazy">
+    <img src="images/6.jpg" alt="Фото 6" loading="lazy">
+    <img src="images/7.jpg" alt="Фото 7" loading="lazy">
+    <img src="images/8.jpg" alt="Фото 8" loading="lazy">
+    <img src="images/9.jpg" alt="Фото 9" loading="lazy">
+    <img src="images/10.jpg" alt="Фото 10" loading="lazy">
+    <img src="images/11.jpg" alt="Фото 11" loading="lazy">
+    <img src="images/12.jpg" alt="Фото 12" loading="lazy">
+    <img src="images/13.jpg" alt="Фото 13" loading="lazy">
+    <img src="images/14.jpg" alt="Фото 14" loading="lazy">
+    <img src="images/15.jpg" alt="Фото 15" loading="lazy">
+    <img src="images/16.jpg" alt="Фото 16" loading="lazy">
+    <img src="images/17.jpg" alt="Фото 17" loading="lazy">
+    <img src="images/18.jpg" alt="Фото 18" loading="lazy">
+    <img src="images/19.jpg" alt="Фото 19" loading="lazy">
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox">
+    <img src="" alt="Увеличенное фото">
+</div>
+
+<!-- Кнопка Наверх -->
+<button id="toTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">↑</button>
+
+<script>
+const galleryImages = document.querySelectorAll('.gallery img');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = lightbox.querySelector('img');
+
+galleryImages.forEach(img => {
+    img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.style.display = 'flex';
+    });
+});
+
+lightbox.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+});
+
+// Появление кнопки Наверх
+const toTop = document.getElementById('toTop');
+window.addEventListener('scroll', () => {
+    toTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+});
+</script>
+
+</body>
+</html>
 

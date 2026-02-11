@@ -26,22 +26,24 @@
 </script>
 
 <style>
-/* Основной стиль */
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background: #1a1a1a; /* мягкий темный фон */
+    background: #1a1a1a; /* мягкий тёмный фон */
     color: #eee;
     scroll-behavior: smooth;
 }
+
 header {
     text-align: center;
     padding: 50px 20px 20px;
 }
+
 h1 {
     font-size: 2.5em;
     margin: 0 0 10px;
 }
+
 p {
     color: #ccc;
     font-size: 1em;
@@ -51,21 +53,57 @@ p {
 /* Галерея */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 12px;
     padding: 20px;
 }
+
+/* ПК: 4 колонки */
+@media (min-width: 1025px) {
+    .gallery {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .gallery img { height: 180px; border-radius: 10px; }
+}
+
+/* Планшет: 3 колонки */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .gallery {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .gallery img { height: 160px; border-radius: 10px; }
+}
+
+/* Телефон: 2 колонки */
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 10px;
+    }
+    .gallery img { height: 140px; border-radius: 6px; }
+    header { padding: 30px 10px 10px; }
+    h1 { font-size: 1.8em; }
+    p { font-size: 0.9em; color: #ddd; }
+}
+
+/* Галерея изображения */
 .gallery img {
     width: 100%;
-    height: 180px;
     object-fit: cover;
-    border-radius: 10px;
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
+    animation: fadeIn 0.4s ease forwards;
 }
+
 .gallery img:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* Lightbox */
@@ -79,19 +117,11 @@ p {
     align-items: center;
     z-index: 1000;
 }
+
 #lightbox img {
     max-width: 90%;
     max-height: 90%;
     border-radius: 10px;
-}
-
-/* Анимация появления галереи */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-.gallery img {
-    animation: fadeIn 0.4s ease forwards;
 }
 
 /* Кнопка Наверх */
@@ -113,28 +143,6 @@ p {
 #toTop:hover {
     background: #fff;
 }
-
-/* Адаптивность */
-@media (max-width: 1024px) {
-    .gallery img { height: 160px; }
-    h1 { font-size: 2.2em; }
-}
-@media (max-width: 768px) {
-    .gallery img { height: 150px; }
-    h1 { font-size: 2em; }
-}
-@media (max-width: 480px) {
-    .gallery {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-        padding: 10px;
-    }
-    .gallery img { height: 140px; border-radius: 6px; }
-    header { padding: 30px 10px 10px; }
-    h1 { font-size: 1.8em; }
-    p { font-size: 0.9em; color: #ddd; }
-    #toTop { padding: 6px 10px; font-size: 0.8em; bottom: 10px; right: 10px; }
-}
 </style>
 </head>
 
@@ -147,7 +155,7 @@ p {
 </header>
 
 <div class="gallery">
-    <!-- Временные placeholder картинки, можно заменить на свои -->
+    <!-- Временные картинки -->
     <img src="https://via.placeholder.com/300x200.png?text=Фото+1" alt="Фото 1">
     <img src="https://via.placeholder.com/300x200.png?text=Фото+2" alt="Фото 2">
     <img src="https://via.placeholder.com/300x200.png?text=Фото+3" alt="Фото 3">
@@ -183,7 +191,6 @@ lightbox.addEventListener('click', () => {
     lightbox.style.display = 'none';
 });
 
-// Появление кнопки Наверх
 const toTop = document.getElementById('toTop');
 window.addEventListener('scroll', () => {
     toTop.style.display = window.scrollY > 300 ? 'block' : 'none';

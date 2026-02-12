@@ -4,155 +4,155 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Amigo Photos — фотопортфолио</title>
-<meta name="description" content="Стрит-фотография и пейзажи. Портфолио фотографа Amigo.">
+<meta name="description" content="Фотопортфолио фотографа. Стрит-фотография и пейзажи.">
+
+<meta property="og:title" content="Amigo Photos — фотопортфолио">
+<meta property="og:description" content="Я снимаю стрит-фотографию и пейзажи.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://amigo007512.github.io/amigophotos.portfolio/">
+<meta property="og:image" content="images/1.jpg">
 
 <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y2D4VS5FRD"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-Y2D4VS5FRD');
+</script>
+
 <style>
-body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:#0a0a0a;
-    color:#fff;
-    scroll-behavior:smooth;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0e0e0e;
+    color: #fff;
+    scroll-behavior: smooth;
 }
 
 /* HERO */
-.hero{
-    height:85vh;
-    background:url('images/1.jpg') center/cover no-repeat;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    position:relative;
+.hero {
+    height: 85vh;
+    background: url('images/1.jpg') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
 }
-.hero::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:rgba(0,0,0,0.6);
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
 }
-.hero-content{
-    position:relative;
-    z-index:2;
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
 }
-.hero h1{
-    font-size:4em;
-    margin:0;
-    letter-spacing:3px;
+.hero h1 {
+    font-size: 4em;
+    margin: 0;
+    letter-spacing: 2px;
 }
-.hero p{
-    opacity:0.8;
-}
-
-/* FILTER */
-.filter{
-    text-align:center;
-    padding:40px 0 10px 0;
-}
-.filter button{
-    background:none;
-    border:1px solid #fff;
-    color:#fff;
-    padding:8px 20px;
-    margin:5px;
-    cursor:pointer;
-    border-radius:30px;
-    transition:0.3s;
-}
-.filter button.active,
-.filter button:hover{
-    background:#fff;
-    color:#000;
+.hero p {
+    margin-top: 15px;
+    font-size: 1.2em;
+    opacity: 0.8;
 }
 
-/* GALLERY */
-.gallery{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
-    padding:40px 60px;
+/* ГАЛЕРЕЯ */
+.gallery {
+    display: grid;
+    gap: 20px;
+    padding: 60px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
-.gallery img{
-    width:100%;
-    height:280px;
-    object-fit:cover;
-    border-radius:12px;
-    cursor:pointer;
-    transition:0.5s;
-    opacity:0;
-    transform:translateY(40px);
+.gallery img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.gallery img.show{
-    opacity:1;
-    transform:translateY(0);
+.gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 
-.gallery img:hover{
-    transform:scale(1.05);
-}
+/* 📱 МОБИЛЬНАЯ ВЕРСИЯ */
+@media (max-width: 768px) {
 
-/* TABLET */
-@media(max-width:1024px){
-    .gallery{
-        grid-template-columns:repeat(3,1fr);
-        padding:30px;
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 15px;
+        gap: 10px;
+    }
+
+    .gallery img {
+        height: 200px;
+    }
+
+    .hero {
+        height: 70vh;
+    }
+
+    .hero h1 {
+        font-size: 2.2em;
+    }
+
+    .hero p {
+        font-size: 1em;
     }
 }
 
-/* 📱 PHONE — строго 2 фото */
-@media(max-width:768px){
-    .gallery{
-        grid-template-columns:repeat(2,1fr);
-        gap:10px;
-        padding:15px;
-    }
-    .gallery img{
-        height:170px;
-    }
-    .hero{
-        height:65vh;
-    }
-    .hero h1{
-        font-size:2.2em;
-    }
+/* Lightbox */
+#lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+#lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
 }
 
-/* LIGHTBOX */
-#lightbox{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.95);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    opacity:0;
-    pointer-events:none;
-    transition:0.4s;
+/* Кнопка наверх */
+#toTop {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    display: none;
+    transition: 0.3s;
 }
-#lightbox.active{
-    opacity:1;
-    pointer-events:auto;
-}
-#lightbox img{
-    max-width:90%;
-    max-height:90%;
-    border-radius:12px;
-    transform:scale(0.9);
-    transition:0.4s;
-}
-#lightbox.active img{
-    transform:scale(1);
+#toTop:hover {
+    background: #ccc;
 }
 
-/* FOOTER */
-footer{
-    text-align:center;
-    padding:40px;
-    opacity:0.4;
+/* Футер */
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 14px;
+    opacity: 0.5;
 }
 </style>
 </head>
@@ -162,82 +162,67 @@ footer{
 <section class="hero">
     <div class="hero-content">
         <h1>Amigo Photos</h1>
-        <p>Street & Landscape Photography</p>
+        <p>Стрит-фотография и пейзажи</p>
+        <p>Фотография — способ сохранить моменты</p>
     </div>
 </section>
 
-<div class="filter">
-    <button class="active" data-filter="all">All</button>
-    <button data-filter="street">Street</button>
-    <button data-filter="landscape">Landscape</button>
-</div>
-
 <section class="gallery">
-    <!-- Указывай категории -->
-    <img src="images/1.jpg" data-category="street">
-    <img src="images/2.jpg" data-category="street">
-    <img src="images/3.jpg" data-category="landscape">
-    <img src="images/4.jpg" data-category="landscape">
-    <img src="images/5.jpg" data-category="street">
-    <img src="images/6.jpg" data-category="landscape">
-    <img src="images/7.jpg" data-category="street">
-    <img src="images/8.jpg" data-category="landscape">
-    <img src="images/9.jpg" data-category="street">
-    <img src="images/10.jpg" data-category="landscape">
+    <img src="images/1.jpg" loading="lazy">
+    <img src="images/2.jpg" loading="lazy">
+    <img src="images/3.jpg" loading="lazy">
+    <img src="images/4.jpg" loading="lazy">
+    <img src="images/5.jpg" loading="lazy">
+    <img src="images/6.jpg" loading="lazy">
+    <img src="images/7.jpg" loading="lazy">
+    <img src="images/8.jpg" loading="lazy">
+    <img src="images/9.jpg" loading="lazy">
+    <img src="images/10.jpg" loading="lazy">
+    <img src="images/11.jpg" loading="lazy">
+    <img src="images/12.jpg" loading="lazy">
+    <img src="images/13.jpg" loading="lazy">
+    <img src="images/14.jpg" loading="lazy">
+    <img src="images/15.jpg" loading="lazy">
+    <img src="images/16.jpg" loading="lazy">
+    <img src="images/17.jpg" loading="lazy">
+    <img src="images/18.jpg" loading="lazy">
+    <img src="images/19.jpg" loading="lazy">
 </section>
 
 <div id="lightbox">
     <img src="">
 </div>
 
+<button id="toTop">↑</button>
+
 <footer>
-© 2026 Amigo Photos
+    © 2026 Amigo Photos — All Rights Reserved
 </footer>
 
 <script>
-const images = document.querySelectorAll('.gallery img');
-const buttons = document.querySelectorAll('.filter button');
+const galleryImages = document.querySelectorAll('.gallery img');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = lightbox.querySelector('img');
 
-/* Scroll animation */
-const observer = new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-        if(entry.isIntersecting){
-            entry.target.classList.add('show');
-        }
-    });
-},{threshold:0.1});
-images.forEach(img=>observer.observe(img));
-
-/* Filter */
-buttons.forEach(button=>{
-    button.addEventListener('click',()=>{
-        document.querySelector('.filter .active').classList.remove('active');
-        button.classList.add('active');
-        const filter = button.dataset.filter;
-
-        images.forEach(img=>{
-            if(filter==="all" || img.dataset.category===filter){
-                img.style.display="block";
-            } else {
-                img.style.display="none";
-            }
-        });
-    });
-});
-
-/* Lightbox */
-images.forEach(img=>{
-    img.addEventListener('click',()=>{
-        lightbox.classList.add('active');
+galleryImages.forEach(img => {
+    img.addEventListener('click', () => {
         lightboxImg.src = img.src;
+        lightbox.style.display = 'flex';
     });
 });
-lightbox.addEventListener('click',()=>{
-    lightbox.classList.remove('active');
+
+lightbox.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+});
+
+const toTop = document.getElementById('toTop');
+window.addEventListener('scroll', () => {
+    toTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+});
+toTop.addEventListener('click', () => {
+    window.scrollTo({top:0, behavior:'smooth'});
 });
 </script>
 
 </body>
-</html>  оптимизируй ккод адаптируй кго под телефон чтобы фото было по два ряда  и убери анимацию при скрол таче на компе 
+</html>

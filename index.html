@@ -27,29 +27,89 @@ gtag('config', 'G-Y2D4VS5FRD');
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #111;
+    background: #0e0e0e;
     color: #fff;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
-/* Header */
-header {
+/* Прелоадер */
+#preloader {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+.loader {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #444;
+    border-top: 4px solid #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* HERO */
+.hero {
+    height: 85vh;
+    background: url('images/1.jpg') center/cover no-repeat fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 60px 20px 30px;
+    position: relative;
 }
-h1 {
-    font-size: 3em;
-    margin: 0 0 10px;
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
 }
-header p {
-    opacity: 0.7;
-    margin: 5px 0;
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+.hero h1 {
+    font-size: 4em;
+    margin: 0;
+    letter-spacing: 2px;
+}
+.hero p {
+    margin-top: 15px;
+    font-size: 1.2em;
+    opacity: 0.8;
+}
+
+/* Фильтры */
+.filters {
+    text-align: center;
+    padding: 40px 20px 10px;
+}
+.filters button {
+    background: none;
+    border: 1px solid #555;
+    color: #fff;
+    padding: 8px 16px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+.filters button.active,
+.filters button:hover {
+    background: #fff;
+    color: #000;
 }
 
 /* Галерея */
 .gallery {
     display: grid;
-    gap: 15px;
-    padding: 30px;
+    gap: 20px;
+    padding: 40px;
     grid-template-columns: repeat(4, 1fr);
 }
 
@@ -58,12 +118,12 @@ header p {
     .gallery { grid-template-columns: repeat(3, 1fr); }
 }
 
-/* Телефон — 2 столбика */
+/* Телефон — строго 2 столбика */
 @media (max-width: 768px) {
-    .gallery {
+    .gallery { 
         grid-template-columns: repeat(2, 1fr);
-        padding: 15px;
-        gap: 10px;
+        padding: 20px;
+        gap: 12px;
     }
     .gallery img {
         height: 160px;
@@ -74,12 +134,19 @@ header p {
     width: 100%;
     height: 260px;
     object-fit: cover;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.6s ease, box-shadow 0.6s ease, opacity 0.6s ease;
+    opacity: 0;
+    transform: translateY(40px);
+}
+.gallery img.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 .gallery img:hover {
-    transform: scale(1.03);
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
 }
 
 /* Lightbox */
@@ -90,83 +157,133 @@ header p {
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 1500;
 }
 #lightbox img {
     max-width: 90%;
     max-height: 90%;
-    border-radius: 8px;
+    border-radius: 10px;
 }
 
 /* Кнопка вверх */
 #toTop {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 25px;
+    right: 25px;
     background: #fff;
     color: #000;
     border: none;
-    padding: 8px 12px;
+    padding: 10px 14px;
     border-radius: 50px;
     cursor: pointer;
     display: none;
-    font-weight: bold;
+}
+
+/* Футер */
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 14px;
+    opacity: 0.5;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-    <h1>Amigo Photos</h1>
-    <p>Стрит-фотография и пейзажи</p>
-    <p>Фотография — способ сохранить моменты</p>
-</header>
+<div id="preloader"><div class="loader"></div></div>
 
-<section class="gallery">
-    <img src="images/1.jpg" loading="lazy">
-    <img src="images/2.jpg" loading="lazy">
-    <img src="images/3.jpg" loading="lazy">
-    <img src="images/4.jpg" loading="lazy">
-    <img src="images/5.jpg" loading="lazy">
-    <img src="images/6.jpg" loading="lazy">
-    <img src="images/7.jpg" loading="lazy">
-    <img src="images/8.jpg" loading="lazy">
-    <img src="images/9.jpg" loading="lazy">
-    <img src="images/10.jpg" loading="lazy">
-    <img src="images/11.jpg" loading="lazy">
-    <img src="images/12.jpg" loading="lazy">
-    <img src="images/13.jpg" loading="lazy">
-    <img src="images/14.jpg" loading="lazy">
-    <img src="images/15.jpg" loading="lazy">
-    <img src="images/16.jpg" loading="lazy">
-    <img src="images/17.jpg" loading="lazy">
-    <img src="images/18.jpg" loading="lazy">
-    <img src="images/19.jpg" loading="lazy">
+<section class="hero">
+    <div class="hero-content">
+        <h1>Amigo Photos</h1>
+        <p>Стрит-фотография и пейзажи</p>
+        <p>Фотография — способ сохранить моменты</p>
+    </div>
 </section>
 
-<div id="lightbox">
-    <img src="">
+<div class="filters">
+    <button class="active" data-filter="all">Все</button>
+    <button data-filter="street">Street</button>
+    <button data-filter="landscape">Landscape</button>
 </div>
 
+<section class="gallery">
+    <img src="images/1.jpg" data-category="street" loading="lazy">
+    <img src="images/2.jpg" data-category="landscape" loading="lazy">
+    <img src="images/3.jpg" data-category="street" loading="lazy">
+    <img src="images/4.jpg" data-category="landscape" loading="lazy">
+    <img src="images/5.jpg" data-category="street" loading="lazy">
+    <img src="images/6.jpg" data-category="landscape" loading="lazy">
+    <img src="images/7.jpg" data-category="street" loading="lazy">
+    <img src="images/8.jpg" data-category="landscape" loading="lazy">
+    <img src="images/9.jpg" data-category="street" loading="lazy">
+    <img src="images/10.jpg" data-category="landscape" loading="lazy">
+    <img src="images/11.jpg" data-category="street" loading="lazy">
+    <img src="images/12.jpg" data-category="landscape" loading="lazy">
+    <img src="images/13.jpg" data-category="street" loading="lazy">
+    <img src="images/14.jpg" data-category="landscape" loading="lazy">
+    <img src="images/15.jpg" data-category="street" loading="lazy">
+    <img src="images/16.jpg" data-category="landscape" loading="lazy">
+    <img src="images/17.jpg" data-category="street" loading="lazy">
+    <img src="images/18.jpg" data-category="landscape" loading="lazy">
+    <img src="images/19.jpg" data-category="street" loading="lazy">
+</section>
+
+<div id="lightbox"><img src=""></div>
 <button id="toTop">↑</button>
 
+<footer>
+© 2026 Amigo Photos — All Rights Reserved
+</footer>
+
 <script>
+/* Прелоадер */
+window.addEventListener("load", () => {
+    document.getElementById("preloader").style.display = "none";
+});
+
+/* Появление при скролле */
 const images = document.querySelectorAll('.gallery img');
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.2 });
+images.forEach(img => observer.observe(img));
+
+/* Фильтрация */
+const buttons = document.querySelectorAll('.filters button');
+buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        images.forEach(img => {
+            if(filter === "all" || img.dataset.category === filter){
+                img.style.display = "block";
+            } else {
+                img.style.display = "none";
+            }
+        });
+    });
+});
+
+/* Lightbox */
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = lightbox.querySelector('img');
-
 images.forEach(img => {
     img.addEventListener('click', () => {
         lightboxImg.src = img.src;
         lightbox.style.display = 'flex';
     });
 });
-
 lightbox.addEventListener('click', () => {
     lightbox.style.display = 'none';
 });
 
+/* Кнопка вверх */
 const toTop = document.getElementById('toTop');
 window.addEventListener('scroll', () => {
     toTop.style.display = window.scrollY > 300 ? 'block' : 'none';

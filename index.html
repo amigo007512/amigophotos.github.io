@@ -6,183 +6,121 @@
 <title>Amigo Photos</title>
 
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+    box-sizing: border-box;
+}
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    background: #0b0b0b;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0e0e0e;
     color: #fff;
 }
 
-/* HEADER */
-header {
-    padding: 25px 20px;
+/* HERO */
+.hero {
+    padding: 120px 20px;
     text-align: center;
-    border-bottom: 1px solid #222;
+    background: #111;
 }
 
-header h1 {
-    font-weight: 500;
-    letter-spacing: 2px;
+.hero h1 {
+    margin: 0;
+    font-size: 2.5em;
 }
 
-/* FILTER */
-.filter {
-    text-align: center;
-    padding: 20px;
+.hero p {
+    margin-top: 10px;
+    opacity: 0.7;
 }
 
-.filter button {
-    background: none;
-    border: 1px solid #333;
-    color: #aaa;
-    padding: 8px 18px;
-    margin: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.filter button:hover,
-.filter button.active {
-    border-color: #fff;
-    color: #fff;
-}
-
-/* GALLERY */
+/* ГАЛЕРЕЯ */
 .gallery {
     display: grid;
-    gap: 12px;
-    padding: 20px;
+    gap: 10px;
+    padding: 15px;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
 .gallery img {
     width: 100%;
-    aspect-ratio: 1/1;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    border-radius: 4px;
+    display: block;
 }
 
-.gallery img.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* MOBILE 2 COL */
+/* 📱 Телефон — 2 в ряд */
 @media (max-width: 768px) {
     .gallery {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* ABOUT */
-.about {
-    padding: 60px 20px;
-    text-align: center;
-    border-top: 1px solid #222;
+/* Lightbox */
+#lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
 }
 
-.about h2 {
-    margin-bottom: 15px;
-    font-weight: 500;
-}
-
-.about p {
-    max-width: 600px;
-    margin: auto;
-    opacity: 0.7;
-    line-height: 1.6;
-}
-
-/* FOOTER */
-footer {
-    padding: 40px 20px;
-    text-align: center;
-    border-top: 1px solid #222;
-    font-size: 14px;
-    opacity: 0.5;
-}
-
-a {
-    color: #fff;
-    text-decoration: none;
-    border-bottom: 1px solid #555;
+#lightbox img {
+    max-width: 95%;
+    max-height: 95%;
 }
 </style>
 </head>
 
 <body>
 
-<header>
+<section class="hero">
     <h1>Amigo Photos</h1>
-</header>
-
-<div class="filter">
-    <button class="active" onclick="filterPhotos('all')">Все</button>
-    <button onclick="filterPhotos('street')">Стрит</button>
-    <button onclick="filterPhotos('landscape')">Пейзажи</button>
-</div>
+    <p>Стрит и пейзажи</p>
+</section>
 
 <section class="gallery">
-    <img src="images/1.jpg" class="street" loading="lazy">
-    <img src="images/2.jpg" class="landscape" loading="lazy">
-    <img src="images/3.jpg" class="street" loading="lazy">
-    <img src="images/4.jpg" class="landscape" loading="lazy">
-    <img src="images/5.jpg" class="street" loading="lazy">
-    <img src="images/6.jpg" class="landscape" loading="lazy">
-    <img src="images/7.jpg" class="street" loading="lazy">
-    <img src="images/8.jpg" class="landscape" loading="lazy">
-    <img src="images/9.jpg" class="street" loading="lazy">
-    <img src="images/10.jpg" class="landscape" loading="lazy">
+    <img src="images/1.jpg" loading="lazy">
+    <img src="images/2.jpg" loading="lazy">
+    <img src="images/3.jpg" loading="lazy">
+    <img src="images/4.jpg" loading="lazy">
+    <img src="images/5.jpg" loading="lazy">
+    <img src="images/6.jpg" loading="lazy">
+    <img src="images/7.jpg" loading="lazy">
+    <img src="images/8.jpg" loading="lazy">
+    <img src="images/9.jpg" loading="lazy">
+    <img src="images/10.jpg" loading="lazy">
+    <img src="images/11.jpg" loading="lazy">
+    <img src="images/12.jpg" loading="lazy">
+    <img src="images/13.jpg" loading="lazy">
+    <img src="images/14.jpg" loading="lazy">
+    <img src="images/15.jpg" loading="lazy">
+    <img src="images/16.jpg" loading="lazy">
+    <img src="images/17.jpg" loading="lazy">
+    <img src="images/18.jpg" loading="lazy">
+    <img src="images/19.jpg" loading="lazy">
 </section>
 
-<section class="about">
-    <h2>Обо мне</h2>
-    <p>
-        Я начинающий фотограф, снимающий стрит-фотографию и пейзажи.
-        Фотография для меня — способ сохранить моменты и атмосферу.
-        Снимаю на Canon G7 X Mark II.
-    </p>
-    <br><br>
-    <a href="#">Instagram</a>
-</section>
-
-<footer>
-    © 2026 Amigo Photos
-</footer>
+<div id="lightbox">
+    <img src="">
+</div>
 
 <script>
-/* FILTER */
-function filterPhotos(category) {
-    const images = document.querySelectorAll('.gallery img');
-    const buttons = document.querySelectorAll('.filter button');
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = lightbox.querySelector("img");
 
-    buttons.forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
-
-    images.forEach(img => {
-        if (category === 'all' || img.classList.contains(category)) {
-            img.style.display = "block";
-        } else {
-            img.style.display = "none";
-        }
-    });
-}
-
-/* FADE IN */
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-        }
-    });
+document.querySelectorAll(".gallery img").forEach(img => {
+    img.onclick = () => {
+        lightboxImg.src = img.src;
+        lightbox.style.display = "flex";
+    };
 });
 
-document.querySelectorAll('.gallery img').forEach(img => {
-    observer.observe(img);
-});
+lightbox.onclick = () => {
+    lightbox.style.display = "none";
+};
 </script>
 
 </body>

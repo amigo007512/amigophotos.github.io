@@ -4,15 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Amigo Photos — фотопортфолио</title>
-<meta name="description" content="Фотопортфолио фотографа. Стрит-фотография и пейзажи.">
-
-<meta property="og:title" content="Amigo Photos — фотопортфолио">
-<meta property="og:description" content="Я снимаю стрит-фотографию и пейзажи.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://amigo007512.github.io/amigophotos.portfolio/">
-<meta property="og:image" content="images/1.jpg">
-
-<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
 <style>
 body {
@@ -20,7 +11,6 @@ body {
     font-family: Arial, sans-serif;
     background: #0e0e0e;
     color: #fff;
-    scroll-behavior: smooth;
 }
 
 /* HERO */
@@ -47,12 +37,10 @@ body {
 .hero h1 {
     font-size: 4em;
     margin: 0;
-    letter-spacing: 2px;
 }
 .hero p {
     margin-top: 15px;
     font-size: 1.2em;
-    opacity: 0.8;
 }
 
 /* ГАЛЕРЕЯ */
@@ -61,7 +49,6 @@ body {
     gap: 20px;
     padding: 60px;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    margin-top: 40px;
 }
 
 .gallery img {
@@ -70,35 +57,21 @@ body {
     object-fit: cover;
     border-radius: 8px;
     cursor: pointer;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.gallery img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 
 /* LIGHTBOX */
 #lightbox {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.9);
+    background: rgba(0,0,0,0.95);
     display: none;
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    opacity: 0;
-    transition: opacity 0.3s ease;
 }
-
-#lightbox.active {
-    display: flex;
-    opacity: 1;
-}
-
 #lightbox img {
     max-width: 95%;
-    max-height: 85%;
+    max-height: 90%;
     border-radius: 10px;
 }
 
@@ -113,28 +86,11 @@ body {
     padding: 10px 15px;
     border-radius: 50px;
     cursor: pointer;
-    font-weight: bold;
     display: none;
-    transition: 0.3s;
-}
-#toTop:hover {
-    background: #ccc;
-}
-
-/* ФУТЕР */
-footer {
-    text-align: center;
-    padding: 40px 20px;
-    font-size: 14px;
-    opacity: 0.5;
 }
 
 /* 📱 МОБИЛЬНАЯ ВЕРСИЯ */
 @media (max-width: 768px) {
-
-    body {
-        font-size: 15px;
-    }
 
     .hero {
         height: 60vh;
@@ -142,13 +98,11 @@ footer {
     }
 
     .hero h1 {
-        font-size: 1.9em;
-        letter-spacing: 1px;
+        font-size: 2em;
     }
 
     .hero p {
-        font-size: 0.95em;
-        opacity: 0.9;
+        font-size: 1em;
     }
 
     .gallery {
@@ -159,13 +113,14 @@ footer {
 
     .gallery img {
         height: 170px;
-        border-radius: 6px;
     }
+}
 
-    footer {
-        font-size: 12px;
-        padding: 30px 10px;
-    }
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 14px;
+    opacity: 0.6;
 }
 </style>
 </head>
@@ -181,25 +136,25 @@ footer {
 </section>
 
 <section class="gallery">
-    <img src="images/1.jpg" alt="Street photo 1" loading="lazy">
-    <img src="images/2.jpg" alt="Street photo 2" loading="lazy">
-    <img src="images/3.jpg" alt="Street photo 3" loading="lazy">
-    <img src="images/4.jpg" alt="Street photo 4" loading="lazy">
-    <img src="images/5.jpg" alt="Street photo 5" loading="lazy">
-    <img src="images/6.jpg" alt="Street photo 6" loading="lazy">
-    <img src="images/7.jpg" alt="Street photo 7" loading="lazy">
-    <img src="images/8.jpg" alt="Street photo 8" loading="lazy">
-    <img src="images/9.jpg" alt="Street photo 9" loading="lazy">
-    <img src="images/10.jpg" alt="Street photo 10" loading="lazy">
-    <img src="images/11.jpg" alt="Street photo 11" loading="lazy">
-    <img src="images/12.jpg" alt="Street photo 12" loading="lazy">
-    <img src="images/13.jpg" alt="Street photo 13" loading="lazy">
-    <img src="images/14.jpg" alt="Street photo 14" loading="lazy">
-    <img src="images/15.jpg" alt="Street photo 15" loading="lazy">
-    <img src="images/16.jpg" alt="Street photo 16" loading="lazy">
-    <img src="images/17.jpg" alt="Street photo 17" loading="lazy">
-    <img src="images/18.jpg" alt="Street photo 18" loading="lazy">
-    <img src="images/19.jpg" alt="Street photo 19" loading="lazy">
+    <img src="images/1.jpg" loading="lazy">
+    <img src="images/2.jpg" loading="lazy">
+    <img src="images/3.jpg" loading="lazy">
+    <img src="images/4.jpg" loading="lazy">
+    <img src="images/5.jpg" loading="lazy">
+    <img src="images/6.jpg" loading="lazy">
+    <img src="images/7.jpg" loading="lazy">
+    <img src="images/8.jpg" loading="lazy">
+    <img src="images/9.jpg" loading="lazy">
+    <img src="images/10.jpg" loading="lazy">
+    <img src="images/11.jpg" loading="lazy">
+    <img src="images/12.jpg" loading="lazy">
+    <img src="images/13.jpg" loading="lazy">
+    <img src="images/14.jpg" loading="lazy">
+    <img src="images/15.jpg" loading="lazy">
+    <img src="images/16.jpg" loading="lazy">
+    <img src="images/17.jpg" loading="lazy">
+    <img src="images/18.jpg" loading="lazy">
+    <img src="images/19.jpg" loading="lazy">
 </section>
 
 <div id="lightbox">
@@ -220,12 +175,12 @@ const lightboxImg = lightbox.querySelector('img');
 galleryImages.forEach(img => {
     img.addEventListener('click', () => {
         lightboxImg.src = img.src;
-        lightbox.classList.add('active');
+        lightbox.style.display = 'flex';
     });
 });
 
 lightbox.addEventListener('click', () => {
-    lightbox.classList.remove('active');
+    lightbox.style.display = 'none';
 });
 
 const toTop = document.getElementById('toTop');
@@ -233,7 +188,7 @@ window.addEventListener('scroll', () => {
     toTop.style.display = window.scrollY > 300 ? 'block' : 'none';
 });
 toTop.addEventListener('click', () => {
-    window.scrollTo({top:0, behavior:'smooth'});
+    window.scrollTo({top:0});
 });
 </script>
 

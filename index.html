@@ -3,183 +3,176 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AMIGO | Photography</title>
+<title>Amigo Photos — фотопортфолио</title>
+<meta name="description" content="Фотопортфолио фотографа. Стрит-фотография и пейзажи.">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<meta property="og:title" content="Amigo Photos — фотопортфолио">
+<meta property="og:description" content="Я снимаю стрит-фотографию и пейзажи.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://amigo007512.github.io/amigophotos.portfolio/">
+<meta property="og:image" content="images/1.jpg">
+
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y2D4VS5FRD"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-Y2D4VS5FRD');
+</script>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  background: #0a0a0a;
-  color: white;
-  font-family: 'Inter', sans-serif;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: #fff;
 }
 
-/* ===== HERO С ФОНОМ ===== */
-.hero {
-  height: 100vh;
-  background: url("images/hero-new.jpg") center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  position: relative;
+/* Header */
+header {
+    text-align: center;
+    padding: 60px 20px 30px;
+}
+h1 {
+    font-size: 3em;
+    margin: 0 0 10px;
+}
+header p {
+    opacity: 0.7;
+    margin: 5px 0;
 }
 
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  padding: 20px;
-  max-width: 900px;
-}
-
-.hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 64px;
-  letter-spacing: 3px;
-  margin-bottom: 20px;
-}
-
-.hero p {
-  font-size: 20px;
-  color: #ddd;
-  line-height: 1.6;
-}
-
-/* ===== ГАЛЕРЕЯ ===== */
+/* Галерея */
 .gallery {
-  padding: 80px 40px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+    display: grid;
+    gap: 15px;
+    padding: 30px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* Планшет */
+@media (max-width: 1024px) {
+    .gallery { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Телефон — 2 столбика */
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 15px;
+        gap: 10px;
+    }
+    .gallery img {
+        height: 160px;
+    }
 }
 
 .gallery img {
-  width: 100%;
-  border-radius: 14px;
-  object-fit: cover;
-  cursor: pointer;
-  transition: transform 0.4s ease;
-  will-change: transform;
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
-
 .gallery img:hover {
-  transform: scale(1.04);
+    transform: scale(1.03);
 }
 
-/* ===== ADAPTIVE ===== */
-@media (min-width: 768px) {
-  .gallery {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (min-width: 1200px) {
-  .gallery {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .hero h1 {
-    font-size: 80px;
-  }
-
-  .hero p {
-    font-size: 22px;
-  }
-}
-
-/* ===== FULLSCREEN (LIGHTBOX) ===== */
+/* Lightbox */
 #lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.95);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 1000;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
-
-#lightbox.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
 #lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 12px;
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 8px;
 }
 
-/* ===== FOOTER ===== */
-footer {
-  text-align: center;
-  padding: 60px 20px;
-  color: #777;
-  font-size: 13px;
+/* Кнопка вверх */
+#toTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 50px;
+    cursor: pointer;
+    display: none;
+    font-weight: bold;
 }
 </style>
 </head>
 
 <body>
 
-<section class="hero">
-  <div class="hero-content">
-    <h1>AMIGO</h1>
-    <p>Я начинающий фотограф. Хочу поделиться своими работами и услышать вашу критику, чтобы стать лучше.</p>
-  </div>
-</section>
+<header>
+    <h1>Amigo Photos</h1>
+    <p>Стрит-фотография и пейзажи</p>
+    <p>Фотография — способ сохранить моменты</p>
+</header>
 
 <section class="gallery">
-  <img src="images/1.jpg" alt="" loading="lazy">
-  <img src="images/2.jpg" alt="" loading="lazy">
-  <img src="images/3.jpg" alt="" loading="lazy">
-  <img src="images/4.jpg" alt="" loading="lazy">
-  <img src="images/5.jpg" alt="" loading="lazy">
-  <img src="images/6.jpg" alt="" loading="lazy">
-  <img src="images/7.jpg" alt="" loading="lazy">
-  <img src="images/8.jpg" alt="" loading="lazy">
+    <img src="images/1.jpg" loading="lazy">
+    <img src="images/2.jpg" loading="lazy">
+    <img src="images/3.jpg" loading="lazy">
+    <img src="images/4.jpg" loading="lazy">
+    <img src="images/5.jpg" loading="lazy">
+    <img src="images/6.jpg" loading="lazy">
+    <img src="images/7.jpg" loading="lazy">
+    <img src="images/8.jpg" loading="lazy">
+    <img src="images/9.jpg" loading="lazy">
+    <img src="images/10.jpg" loading="lazy">
+    <img src="images/11.jpg" loading="lazy">
+    <img src="images/12.jpg" loading="lazy">
+    <img src="images/13.jpg" loading="lazy">
+    <img src="images/14.jpg" loading="lazy">
+    <img src="images/15.jpg" loading="lazy">
+    <img src="images/16.jpg" loading="lazy">
+    <img src="images/17.jpg" loading="lazy">
+    <img src="images/18.jpg" loading="lazy">
+    <img src="images/19.jpg" loading="lazy">
 </section>
 
-<!-- FULLSCREEN LIGHTBOX -->
 <div id="lightbox">
-  <img src="" alt="Фото">
+    <img src="">
 </div>
 
-<footer>
-  © 2026 AMIGO — All Rights Reserved
-</footer>
+<button id="toTop">↑</button>
 
 <script>
-// ===== LIGHTBOX =====
+const images = document.querySelectorAll('.gallery img');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = lightbox.querySelector('img');
-const galleryImages = document.querySelectorAll('.gallery img');
 
-galleryImages.forEach(img => {
-  img.addEventListener('click', () => {
-    lightboxImg.src = img.src;
-    lightbox.classList.add('active');
-  });
+images.forEach(img => {
+    img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.style.display = 'flex';
+    });
 });
 
-// Закрытие при клике
 lightbox.addEventListener('click', () => {
-  lightbox.classList.remove('active');
+    lightbox.style.display = 'none';
+});
+
+const toTop = document.getElementById('toTop');
+window.addEventListener('scroll', () => {
+    toTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+});
+toTop.addEventListener('click', () => {
+    window.scrollTo({top:0, behavior:'smooth'});
 });
 </script>
 

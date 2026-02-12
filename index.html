@@ -14,20 +14,11 @@
 
 <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y2D4VS5FRD"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-Y2D4VS5FRD');
-</script>
-
 <style>
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #0e0e0e;
+    background: #0b0b0b;
     color: #fff;
     scroll-behavior: smooth;
 }
@@ -46,17 +37,18 @@ body {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.55);
+    background: rgba(0,0,0,0.6);
 }
 .hero-content {
     position: relative;
     z-index: 2;
     padding: 20px;
+    animation: fadeIn 1.5s ease;
 }
 .hero h1 {
     font-size: 4em;
     margin: 0;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 }
 .hero p {
     margin-top: 15px;
@@ -69,24 +61,30 @@ body {
     display: grid;
     gap: 20px;
     padding: 60px;
-    grid-template-columns: repeat(4, 1fr); /* ПК — 4 фото */
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .gallery img {
     width: 100%;
     height: 280px;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.6s ease;
+}
+
+.gallery img.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .gallery img:hover {
     transform: scale(1.05);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 
-/* 📲 Планшет */
+/* Планшет */
 @media (max-width: 1024px) {
     .gallery {
         grid-template-columns: repeat(3, 1fr);
@@ -94,7 +92,7 @@ body {
     }
 }
 
-/* 📱 Телефон */
+/* 📱 Телефон — строго 2 фото */
 @media (max-width: 768px) {
     .gallery {
         grid-template-columns: repeat(2, 1fr);
@@ -103,7 +101,7 @@ body {
     }
 
     .gallery img {
-        height: 180px;
+        height: 170px;
     }
 
     .hero {
@@ -123,16 +121,31 @@ body {
 #lightbox {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.9);
-    display: none;
+    background: rgba(0,0,0,0.95);
+    display: flex;
     justify-content: center;
     align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
     z-index: 1000;
 }
+
+#lightbox.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
 #lightbox img {
     max-width: 90%;
     max-height: 90%;
-    border-radius: 10px;
+    border-radius: 12px;
+    transform: scale(0.9);
+    transition: transform 0.4s ease;
+}
+
+#lightbox.active img {
+    transform: scale(1);
 }
 
 /* Кнопка наверх */
@@ -148,10 +161,6 @@ body {
     cursor: pointer;
     font-weight: bold;
     display: none;
-    transition: 0.3s;
-}
-#toTop:hover {
-    background: #ccc;
 }
 
 /* Футер */
@@ -159,7 +168,13 @@ footer {
     text-align: center;
     padding: 40px 20px;
     font-size: 14px;
-    opacity: 0.5;
+    opacity: 0.4;
+}
+
+/* Анимация */
+@keyframes fadeIn {
+    from {opacity:0; transform: translateY(20px);}
+    to {opacity:1; transform: translateY(0);}
 }
 </style>
 </head>
@@ -175,6 +190,7 @@ footer {
 </section>
 
 <section class="gallery">
+    <!-- ТВОИ ФОТО -->
     <img src="images/1.jpg" loading="lazy">
     <img src="images/2.jpg" loading="lazy">
     <img src="images/3.jpg" loading="lazy">
@@ -207,22 +223,35 @@ footer {
 </footer>
 
 <script>
-const galleryImages = document.querySelectorAll('.gallery img');
+const images = document.querySelectorAll('.gallery img');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = lightbox.querySelector('img');
+const toTop = document.getElementById('toTop');
 
-galleryImages.forEach(img => {
+/* Плавное появление при скролле */
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add('show');
+        }
+    });
+},{threshold:0.1});
+
+images.forEach(img => observer.observe(img));
+
+/* Lightbox */
+images.forEach(img => {
     img.addEventListener('click', () => {
+        lightbox.classList.add('active');
         lightboxImg.src = img.src;
-        lightbox.style.display = 'flex';
     });
 });
 
 lightbox.addEventListener('click', () => {
-    lightbox.style.display = 'none';
+    lightbox.classList.remove('active');
 });
 
-const toTop = document.getElementById('toTop');
+/* Кнопка наверх */
 window.addEventListener('scroll', () => {
     toTop.style.display = window.scrollY > 300 ? 'block' : 'none';
 });

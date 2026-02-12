@@ -14,15 +14,6 @@
 
 <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y2D4VS5FRD"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-Y2D4VS5FRD');
-</script>
-
 <style>
 body {
     margin: 0;
@@ -70,6 +61,7 @@ body {
     gap: 20px;
     padding: 60px;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    margin-top: 40px;
 }
 
 .gallery img {
@@ -86,33 +78,7 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 
-/* 📱 МОБИЛЬНАЯ ВЕРСИЯ */
-@media (max-width: 768px) {
-
-    .gallery {
-        grid-template-columns: repeat(2, 1fr);
-        padding: 15px;
-        gap: 10px;
-    }
-
-    .gallery img {
-        height: 200px;
-    }
-
-    .hero {
-        height: 70vh;
-    }
-
-    .hero h1 {
-        font-size: 2.2em;
-    }
-
-    .hero p {
-        font-size: 1em;
-    }
-}
-
-/* Lightbox */
+/* LIGHTBOX */
 #lightbox {
     position: fixed;
     inset: 0;
@@ -121,18 +87,26 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
+
+#lightbox.active {
+    display: flex;
+    opacity: 1;
+}
+
 #lightbox img {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 95%;
+    max-height: 85%;
     border-radius: 10px;
 }
 
 /* Кнопка наверх */
 #toTop {
     position: fixed;
-    bottom: 25px;
-    right: 25px;
+    bottom: 20px;
+    right: 20px;
     background: #fff;
     color: #000;
     border: none;
@@ -147,12 +121,51 @@ body {
     background: #ccc;
 }
 
-/* Футер */
+/* ФУТЕР */
 footer {
     text-align: center;
     padding: 40px 20px;
     font-size: 14px;
     opacity: 0.5;
+}
+
+/* 📱 МОБИЛЬНАЯ ВЕРСИЯ */
+@media (max-width: 768px) {
+
+    body {
+        font-size: 15px;
+    }
+
+    .hero {
+        height: 60vh;
+        padding: 20px;
+    }
+
+    .hero h1 {
+        font-size: 1.9em;
+        letter-spacing: 1px;
+    }
+
+    .hero p {
+        font-size: 0.95em;
+        opacity: 0.9;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 12px;
+        gap: 8px;
+    }
+
+    .gallery img {
+        height: 170px;
+        border-radius: 6px;
+    }
+
+    footer {
+        font-size: 12px;
+        padding: 30px 10px;
+    }
 }
 </style>
 </head>
@@ -168,25 +181,25 @@ footer {
 </section>
 
 <section class="gallery">
-    <img src="images/1.jpg" loading="lazy">
-    <img src="images/2.jpg" loading="lazy">
-    <img src="images/3.jpg" loading="lazy">
-    <img src="images/4.jpg" loading="lazy">
-    <img src="images/5.jpg" loading="lazy">
-    <img src="images/6.jpg" loading="lazy">
-    <img src="images/7.jpg" loading="lazy">
-    <img src="images/8.jpg" loading="lazy">
-    <img src="images/9.jpg" loading="lazy">
-    <img src="images/10.jpg" loading="lazy">
-    <img src="images/11.jpg" loading="lazy">
-    <img src="images/12.jpg" loading="lazy">
-    <img src="images/13.jpg" loading="lazy">
-    <img src="images/14.jpg" loading="lazy">
-    <img src="images/15.jpg" loading="lazy">
-    <img src="images/16.jpg" loading="lazy">
-    <img src="images/17.jpg" loading="lazy">
-    <img src="images/18.jpg" loading="lazy">
-    <img src="images/19.jpg" loading="lazy">
+    <img src="images/1.jpg" alt="Street photo 1" loading="lazy">
+    <img src="images/2.jpg" alt="Street photo 2" loading="lazy">
+    <img src="images/3.jpg" alt="Street photo 3" loading="lazy">
+    <img src="images/4.jpg" alt="Street photo 4" loading="lazy">
+    <img src="images/5.jpg" alt="Street photo 5" loading="lazy">
+    <img src="images/6.jpg" alt="Street photo 6" loading="lazy">
+    <img src="images/7.jpg" alt="Street photo 7" loading="lazy">
+    <img src="images/8.jpg" alt="Street photo 8" loading="lazy">
+    <img src="images/9.jpg" alt="Street photo 9" loading="lazy">
+    <img src="images/10.jpg" alt="Street photo 10" loading="lazy">
+    <img src="images/11.jpg" alt="Street photo 11" loading="lazy">
+    <img src="images/12.jpg" alt="Street photo 12" loading="lazy">
+    <img src="images/13.jpg" alt="Street photo 13" loading="lazy">
+    <img src="images/14.jpg" alt="Street photo 14" loading="lazy">
+    <img src="images/15.jpg" alt="Street photo 15" loading="lazy">
+    <img src="images/16.jpg" alt="Street photo 16" loading="lazy">
+    <img src="images/17.jpg" alt="Street photo 17" loading="lazy">
+    <img src="images/18.jpg" alt="Street photo 18" loading="lazy">
+    <img src="images/19.jpg" alt="Street photo 19" loading="lazy">
 </section>
 
 <div id="lightbox">
@@ -207,12 +220,12 @@ const lightboxImg = lightbox.querySelector('img');
 galleryImages.forEach(img => {
     img.addEventListener('click', () => {
         lightboxImg.src = img.src;
-        lightbox.style.display = 'flex';
+        lightbox.classList.add('active');
     });
 });
 
 lightbox.addEventListener('click', () => {
-    lightbox.style.display = 'none';
+    lightbox.classList.remove('active');
 });
 
 const toTop = document.getElementById('toTop');

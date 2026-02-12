@@ -51,6 +51,7 @@ body {
 .hero-content {
     position: relative;
     z-index: 2;
+    padding: 20px;
 }
 .hero h1 {
     font-size: 4em;
@@ -63,7 +64,7 @@ body {
     opacity: 0.8;
 }
 
-/* Галерея */
+/* ГАЛЕРЕЯ */
 .gallery {
     display: grid;
     gap: 20px;
@@ -77,12 +78,38 @@ body {
     object-fit: cover;
     border-radius: 8px;
     cursor: pointer;
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .gallery img:hover {
     transform: scale(1.05);
     box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+/* 📱 МОБИЛЬНАЯ ВЕРСИЯ */
+@media (max-width: 768px) {
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 15px;
+        gap: 10px;
+    }
+
+    .gallery img {
+        height: 200px;
+    }
+
+    .hero {
+        height: 70vh;
+    }
+
+    .hero h1 {
+        font-size: 2.2em;
+    }
+
+    .hero p {
+        font-size: 1em;
+    }
 }
 
 /* Lightbox */

@@ -3,88 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amigo Photos — фотопортфолио</title>
-<meta name="description" content="Фотопортфолио фотографа. Стрит-фотография и пейзажи.">
-
-<meta property="og:title" content="Amigo Photos — фотопортфолио">
-<meta property="og:description" content="Я снимаю стрит-фотографию и пейзажи.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://amigo007512.github.io/amigophotos.portfolio/">
-<meta property="og:image" content="images/1.jpg">
-
-<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+<title>Amigo Photos</title>
 
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: #0e0e0e;
     color: #fff;
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
 }
 
 /* HERO */
 .hero {
-    height: 75vh;
-    background: url('images/1.jpg') center/cover no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 120px 20px;
     text-align: center;
-    position: relative;
+    background: #111;
 }
-.hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.55);
-}
-.hero-content {
-    position: relative;
-    z-index: 2;
-    padding: 20px;
-}
+
 .hero h1 {
-    font-size: 3em;
     margin: 0;
+    font-size: 2.5em;
 }
+
 .hero p {
     margin-top: 10px;
-    font-size: 1em;
-    opacity: 0.8;
+    opacity: 0.7;
 }
 
 /* ГАЛЕРЕЯ */
 .gallery {
     display: grid;
-    gap: 15px;
-    padding: 20px;
+    gap: 10px;
+    padding: 15px;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
 .gallery img {
     width: 100%;
-    height: 250px;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
-    border-radius: 6px;
-    cursor: pointer;
+    border-radius: 4px;
+    display: block;
 }
 
-/* 📱 Телефон — 2 фото в ряд */
+/* 📱 Телефон — 2 в ряд */
 @media (max-width: 768px) {
     .gallery {
         grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-        padding: 15px;
-    }
-
-    .gallery img {
-        height: 180px;
-    }
-
-    .hero h1 {
-        font-size: 2em;
     }
 }
 
@@ -96,35 +65,11 @@ body {
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
 }
+
 #lightbox img {
     max-width: 95%;
     max-height: 95%;
-    border-radius: 8px;
-}
-
-/* Кнопка наверх */
-#toTop {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #fff;
-    color: #000;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 50px;
-    cursor: pointer;
-    font-weight: bold;
-    display: none;
-}
-
-/* Футер */
-footer {
-    text-align: center;
-    padding: 30px 15px;
-    font-size: 13px;
-    opacity: 0.5;
 }
 </style>
 </head>
@@ -132,11 +77,8 @@ footer {
 <body>
 
 <section class="hero">
-    <div class="hero-content">
-        <h1>Amigo Photos</h1>
-        <p>Стрит-фотография и пейзажи</p>
-        <p>Фотография — способ сохранить моменты</p>
-    </div>
+    <h1>Amigo Photos</h1>
+    <p>Стрит и пейзажи</p>
 </section>
 
 <section class="gallery">
@@ -165,35 +107,19 @@ footer {
     <img src="">
 </div>
 
-<button id="toTop">↑</button>
-
-<footer>
-    © 2026 Amigo Photos — All Rights Reserved
-</footer>
-
 <script>
-const galleryImages = document.querySelectorAll('.gallery img');
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = lightbox.querySelector('img');
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = lightbox.querySelector("img");
 
-galleryImages.forEach(img => {
+document.querySelectorAll(".gallery img").forEach(img => {
     img.onclick = () => {
         lightboxImg.src = img.src;
-        lightbox.style.display = 'flex';
+        lightbox.style.display = "flex";
     };
 });
 
 lightbox.onclick = () => {
-    lightbox.style.display = 'none';
-};
-
-const toTop = document.getElementById('toTop');
-window.onscroll = () => {
-    toTop.style.display = window.scrollY > 300 ? 'block' : 'none';
-};
-
-toTop.onclick = () => {
-    window.scrollTo({top:0});
+    lightbox.style.display = "none";
 };
 </script>
 

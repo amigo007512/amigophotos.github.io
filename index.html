@@ -21,10 +21,9 @@ body {
 }
 
 /* ===== HERO С ФОНОМ ===== */
-
 .hero {
   height: 100vh;
-  background: url("images/hero.jpg") center/cover no-repeat;
+  background: url("images/hero-new.jpg") center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,7 +31,6 @@ body {
   position: relative;
 }
 
-/* затемнение поверх фото */
 .hero::after {
   content: "";
   position: absolute;
@@ -47,7 +45,6 @@ body {
   max-width: 900px;
 }
 
-/* Заголовок */
 .hero h1 {
   font-family: 'Playfair Display', serif;
   font-size: 64px;
@@ -55,7 +52,6 @@ body {
   margin-bottom: 20px;
 }
 
-/* Описание */
 .hero p {
   font-size: 20px;
   color: #ddd;
@@ -63,7 +59,6 @@ body {
 }
 
 /* ===== ГАЛЕРЕЯ ===== */
-
 .gallery {
   padding: 80px 40px;
   display: grid;
@@ -75,6 +70,7 @@ body {
   width: 100%;
   border-radius: 14px;
   object-fit: cover;
+  cursor: pointer;
   transition: transform 0.4s ease;
   will-change: transform;
 }
@@ -84,7 +80,6 @@ body {
 }
 
 /* ===== ADAPTIVE ===== */
-
 @media (min-width: 768px) {
   .gallery {
     grid-template-columns: repeat(3, 1fr);
@@ -105,6 +100,32 @@ body {
   }
 }
 
+/* ===== FULLSCREEN (LIGHTBOX) ===== */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+#lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+}
+
+/* ===== FOOTER ===== */
 footer {
   text-align: center;
   padding: 60px 20px;
@@ -134,9 +155,33 @@ footer {
   <img src="images/8.jpg" alt="" loading="lazy">
 </section>
 
+<!-- FULLSCREEN LIGHTBOX -->
+<div id="lightbox">
+  <img src="" alt="Фото">
+</div>
+
 <footer>
   © 2026 AMIGO — All Rights Reserved
 </footer>
+
+<script>
+// ===== LIGHTBOX =====
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = lightbox.querySelector('img');
+const galleryImages = document.querySelectorAll('.gallery img');
+
+galleryImages.forEach(img => {
+  img.addEventListener('click', () => {
+    lightboxImg.src = img.src;
+    lightbox.classList.add('active');
+  });
+});
+
+// Закрытие при клике
+lightbox.addEventListener('click', () => {
+  lightbox.classList.remove('active');
+});
+</script>
 
 </body>
 </html>

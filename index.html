@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amigo Photos</title>
+<title>AMIGO | Photography</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 * {
@@ -13,200 +15,211 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background: #0f0f0f;
-  color: white;
+  background: #0a0a0a;
+  color: #f2f2f2;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
 }
 
-header {
-  text-align: center;
-  padding: 40px 20px;
+/* ===== NAVBAR ===== */
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0a0a0a;
+  z-index: 1000;
 }
 
-header h1 {
-  font-size: 28px;
+nav h2 {
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 2px;
   font-weight: 600;
 }
 
-header p {
-  margin-top: 10px;
-  color: #aaa;
+nav span {
   font-size: 14px;
+  color: #aaa;
 }
 
+/* ===== HERO ===== */
+
+.hero {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  margin-top: 60px;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 56px;
+  letter-spacing: 3px;
+}
+
+.hero p {
+  margin-top: 20px;
+  color: #aaa;
+  font-size: 16px;
+}
+
+/* ===== GALLERY ===== */
+
 .gallery {
+  padding: 80px 40px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  padding: 10px;
+  gap: 25px;
+}
+
+.gallery-item {
+  overflow: hidden;
+  border-radius: 16px;
+  cursor: pointer;
+  transform: translateY(40px);
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.gallery-item.visible {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .gallery img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 8px;
-
-  transition: transform 0.25s ease;
+  border-radius: 16px;
+  transition: transform 0.5s ease;
   will-change: transform;
 }
 
-.gallery img:hover {
-  transform: scale(1.03);
+.gallery-item:hover img {
+  transform: scale(1.05);
 }
 
-/* Планшет */
+/* ===== ADAPTIVE ===== */
+
 @media (min-width: 768px) {
   .gallery {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* ПК */
 @media (min-width: 1200px) {
   .gallery {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
+/* ===== FULLSCREEN ===== */
+
+.fullscreen {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.fullscreen.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.fullscreen img {
+  max-width: 90%;
+  max-height: 90%;
+}
+
 footer {
   text-align: center;
-  padding: 40px 20px;
-  font-size: 13px;
+  padding: 60px 20px;
   color: #777;
+  font-size: 13px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <h1>Amigo Photos</h1>
-  <p>Пейзаж и уличная фотография</p>
-</header>
+<nav>
+  <h2>AMIGO</h2>
+  <span>Photography</span>
+</nav>
+
+<section class="hero">
+  <div>
+    <h1>Capturing Moments</h1>
+    <p>Landscape & Street Photography</p>
+  </div>
+</section>
 
 <section class="gallery">
 
-  <img src="images/1.jpg" alt="Горный пейзаж" loading="lazy">
-  <img src="images/2.jpg" alt="Закат в горах" loading="lazy">
-  <img src="images/3.jpg" alt="Городская улица ночью" loading="lazy">
-  <img src="images/4.jpg" alt="Озеро в тумане" loading="lazy">
-  <img src="images/5.jpg" alt="Архитектура города" loading="lazy">
-  <img src="images/6.jpg" alt="Природный пейзаж" loading="lazy">
-  <img src="images/7.jpg" alt="Улица на рассвете" loading="lazy">
-  <img src="images/8.jpg" alt="Горы Кыргызстана" loading="lazy">
+  <div class="gallery-item"><img src="images/1.jpg" alt="" loading="lazy"></div>
+  <div class="gallery-item"><img src="images/2.jpg" alt="" loading="lazy"></div>
+  <div class="gallery-item"><img src="images/3.jpg" alt="" loading="lazy"></div>
+  <div class="gallery-item"><img src="images/4.jpg" alt="" loading="lazy"></div>
+  <div class="gallery-item"><img src="images/5.jpg" alt="" loading="lazy"></div>
+  <div class="gallery-item"><img src="images/6.jpg" alt="" loading="lazy"></div>
+  <div class="gallery-item"><img src="images/7.jpg" alt="" loading="lazy"></div>
+  <div class="gallery-item"><img src="images/8.jpg" alt="" loading="lazy"></div>
 
 </section>
 
-<footer>
-  © 2026 Amigo | All rights reserved
-</footer>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amigo Photos</title>
-
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background: #0f0f0f;
-  color: white;
-}
-
-header {
-  text-align: center;
-  padding: 40px 20px;
-}
-
-header h1 {
-  font-size: 28px;
-  font-weight: 600;
-}
-
-header p {
-  margin-top: 10px;
-  color: #aaa;
-  font-size: 14px;
-}
-
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  padding: 10px;
-}
-
-.gallery img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 8px;
-
-  transition: transform 0.25s ease;
-  will-change: transform;
-}
-
-.gallery img:hover {
-  transform: scale(1.03);
-}
-
-/* Планшет */
-@media (min-width: 768px) {
-  .gallery {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* ПК */
-@media (min-width: 1200px) {
-  .gallery {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-footer {
-  text-align: center;
-  padding: 40px 20px;
-  font-size: 13px;
-  color: #777;
-}
-</style>
-</head>
-
-<body>
-
-<header>
-  <h1>Amigo Photos</h1>
-  <p>Пейзаж и уличная фотография</p>
-</header>
-
-<section class="gallery">
-
-  <img src="images/1.jpg" alt="Горный пейзаж" loading="lazy">
-  <img src="images/2.jpg" alt="Закат в горах" loading="lazy">
-  <img src="images/3.jpg" alt="Городская улица ночью" loading="lazy">
-  <img src="images/4.jpg" alt="Озеро в тумане" loading="lazy">
-  <img src="images/5.jpg" alt="Архитектура города" loading="lazy">
-  <img src="images/6.jpg" alt="Природный пейзаж" loading="lazy">
-  <img src="images/7.jpg" alt="Улица на рассвете" loading="lazy">
-  <img src="images/8.jpg" alt="Горы Кыргызстана" loading="lazy">
-
-</section>
+<div class="fullscreen" id="fullscreen">
+  <img src="" alt="">
+</div>
 
 <footer>
-  © 2026 Amigo | All rights reserved
+  © 2026 AMIGO — All Rights Reserved
 </footer>
+
+<script>
+/* ===== SCROLL ANIMATION (лёгкая) ===== */
+
+const items = document.querySelectorAll('.gallery-item');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+items.forEach(item => observer.observe(item));
+
+/* ===== FULLSCREEN VIEW ===== */
+
+const fullscreen = document.getElementById('fullscreen');
+const fullscreenImg = fullscreen.querySelector('img');
+
+items.forEach(item => {
+  item.addEventListener('click', () => {
+    const img = item.querySelector('img');
+    fullscreenImg.src = img.src;
+    fullscreen.classList.add('active');
+  });
+});
+
+fullscreen.addEventListener('click', () => {
+  fullscreen.classList.remove('active');
+});
+</script>
 
 </body>
 </html>

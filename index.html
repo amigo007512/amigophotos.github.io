@@ -16,94 +16,67 @@
 
 body {
   background: #0a0a0a;
-  color: #f2f2f2;
+  color: white;
   font-family: 'Inter', sans-serif;
-  overflow-x: hidden;
 }
 
-/* ===== NAVBAR ===== */
-
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 20px 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #0a0a0a;
-  z-index: 1000;
-}
-
-nav h2 {
-  font-family: 'Playfair Display', serif;
-  letter-spacing: 2px;
-  font-weight: 600;
-}
-
-nav span {
-  font-size: 14px;
-  color: #aaa;
-}
-
-/* ===== HERO ===== */
+/* ===== HERO С ФОНОМ ===== */
 
 .hero {
-  height: 80vh;
+  height: 100vh;
+  background: url("images/hero.jpg") center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  position: relative;
+}
+
+/* затемнение поверх фото */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
   padding: 20px;
-  margin-top: 60px;
 }
 
 .hero h1 {
   font-family: 'Playfair Display', serif;
-  font-size: 56px;
+  font-size: 64px;
   letter-spacing: 3px;
 }
 
 .hero p {
   margin-top: 20px;
-  color: #aaa;
-  font-size: 16px;
+  font-size: 18px;
+  color: #ddd;
 }
 
-/* ===== GALLERY ===== */
+/* ===== ГАЛЕРЕЯ ===== */
 
 .gallery {
   padding: 80px 40px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 25px;
-}
-
-.gallery-item {
-  overflow: hidden;
-  border-radius: 16px;
-  cursor: pointer;
-  transform: translateY(40px);
-  opacity: 0;
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.gallery-item.visible {
-  transform: translateY(0);
-  opacity: 1;
+  gap: 20px;
 }
 
 .gallery img {
   width: 100%;
-  height: 100%;
+  border-radius: 14px;
   object-fit: cover;
-  border-radius: 16px;
-  transition: transform 0.5s ease;
+  transition: transform 0.4s ease;
   will-change: transform;
 }
 
-.gallery-item:hover img {
-  transform: scale(1.05);
+.gallery img:hover {
+  transform: scale(1.04);
 }
 
 /* ===== ADAPTIVE ===== */
@@ -118,30 +91,10 @@ nav span {
   .gallery {
     grid-template-columns: repeat(4, 1fr);
   }
-}
 
-/* ===== FULLSCREEN ===== */
-
-.fullscreen {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.95);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.fullscreen.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.fullscreen img {
-  max-width: 90%;
-  max-height: 90%;
+  .hero h1 {
+    font-size: 80px;
+  }
 }
 
 footer {
@@ -155,71 +108,27 @@ footer {
 
 <body>
 
-<nav>
-  <h2>AMIGO</h2>
-  <span>Photography</span>
-</nav>
-
 <section class="hero">
-  <div>
-    <h1>Capturing Moments</h1>
+  <div class="hero-content">
+    <h1>AMIGO</h1>
     <p>Landscape & Street Photography</p>
   </div>
 </section>
 
 <section class="gallery">
-
-  <div class="gallery-item"><img src="images/1.jpg" alt="" loading="lazy"></div>
-  <div class="gallery-item"><img src="images/2.jpg" alt="" loading="lazy"></div>
-  <div class="gallery-item"><img src="images/3.jpg" alt="" loading="lazy"></div>
-  <div class="gallery-item"><img src="images/4.jpg" alt="" loading="lazy"></div>
-  <div class="gallery-item"><img src="images/5.jpg" alt="" loading="lazy"></div>
-  <div class="gallery-item"><img src="images/6.jpg" alt="" loading="lazy"></div>
-  <div class="gallery-item"><img src="images/7.jpg" alt="" loading="lazy"></div>
-  <div class="gallery-item"><img src="images/8.jpg" alt="" loading="lazy"></div>
-
+  <img src="images/1.jpg" alt="" loading="lazy">
+  <img src="images/2.jpg" alt="" loading="lazy">
+  <img src="images/3.jpg" alt="" loading="lazy">
+  <img src="images/4.jpg" alt="" loading="lazy">
+  <img src="images/5.jpg" alt="" loading="lazy">
+  <img src="images/6.jpg" alt="" loading="lazy">
+  <img src="images/7.jpg" alt="" loading="lazy">
+  <img src="images/8.jpg" alt="" loading="lazy">
 </section>
-
-<div class="fullscreen" id="fullscreen">
-  <img src="" alt="">
-</div>
 
 <footer>
   © 2026 AMIGO — All Rights Reserved
 </footer>
-
-<script>
-/* ===== SCROLL ANIMATION (лёгкая) ===== */
-
-const items = document.querySelectorAll('.gallery-item');
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.1 });
-
-items.forEach(item => observer.observe(item));
-
-/* ===== FULLSCREEN VIEW ===== */
-
-const fullscreen = document.getElementById('fullscreen');
-const fullscreenImg = fullscreen.querySelector('img');
-
-items.forEach(item => {
-  item.addEventListener('click', () => {
-    const img = item.querySelector('img');
-    fullscreenImg.src = img.src;
-    fullscreen.classList.add('active');
-  });
-});
-
-fullscreen.addEventListener('click', () => {
-  fullscreen.classList.remove('active');
-});
-</script>
 
 </body>
 </html>
